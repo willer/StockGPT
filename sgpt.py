@@ -1,6 +1,12 @@
 import csv, re, os, argparse
 import openai
+from datetime import datetime
 from duckduckgo_search import ddg_news
+
+timestamp = datetime.now()
+current_time = timestamp.strftime("%m-%d-%Y-%H:%M:%S")
+print("Current Time =", current_time)
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-t', '--turbo', action='store_true', help='use gpt-3.5-turbo instead of gpt-4')
@@ -76,16 +82,16 @@ for company in open('companies.txt', 'r').readlines():
     tScores.append([company, mean])
 
     #make individual report
-    with open('Individual_Reports/'+company+'.csv', 'w') as f:
+    with open('Individual_Reports/'+company+'-'+str(current_time)+'.csv', 'w') as f:
         csvwriter = csv.writer(f)
         csvwriter.writerow(['Headline', 'Score'])
         csvwriter.writerows(scores)
-    print('[*] Saved Individual_Reports/'+company+'.csv')
+    print('[*] Saved Individual_Reports/'+company+'-'+str(current_time)+'.csv')
 
 #make final report
 tScores.append(['Total Cost', apiCost])
-with open('report.csv', 'w') as f:
+with open('report'+str(current_time)+'.csv', 'w') as f:
     csvwriter = csv.writer(f)
     csvwriter.writerow(['Company', 'Mean Score'])
     csvwriter.writerows(tScores)
-print('[*] Saved report.csv')
+print('[*] Saved report'+str(current_time)+'.csv')
