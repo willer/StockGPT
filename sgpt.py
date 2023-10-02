@@ -26,7 +26,7 @@ if args.combined:
 modelV = 'gpt-3.5-turbo' if args.turbo else 'gpt-4'
 tScores = []
 apiCost = 0
-openai.api_key = open('auth.txt', 'r').readlines()[0].strip()
+openai.api_key = os.environ['OPENAI_API_KEY']
 if not os.path.isdir('Individual_Reports'):
     os.mkdir('Individual_Reports')
 
@@ -38,8 +38,10 @@ def askGPT(prompt):
     return resp['choices'][0]['message']['content']
 
 #for every company in companies.txt
-for company in open('companies.txt', 'r').readlines():
-    company = company.strip()
+for line in open('companies.txt', 'r').readlines():
+    line = line.strip()
+    company = line.split(',')[0]
+    ticker = line.split(',')[1]
     scores = []
     sysPrompt = sysPrompt.format(company)
     sum = 0 # these two vars for calculating the mean score
@@ -79,7 +81,7 @@ for company in open('companies.txt', 'r').readlines():
     #calculate mean score, log it
     mean = sum/num
     scores.append(['Mean Score', mean])
-    tScores.append([company, mean])
+    tScores.append([company, ticker, mean])
 
     #make individual report
     with open('Individual_Reports/'+company+'-'+str(current_time)+'.csv', 'w') as f:
@@ -92,6 +94,6 @@ for company in open('companies.txt', 'r').readlines():
 tScores.append(['Total Cost', apiCost])
 with open('report'+str(current_time)+'.csv', 'w') as f:
     csvwriter = csv.writer(f)
-    csvwriter.writerow(['Company', 'Mean Score'])
+    csvwriter.writerow(['Company', 'Ticker', 'Mean Score'])
     csvwriter.writerows(tScores)
 print('[*] Saved report'+str(current_time)+'.csv')
