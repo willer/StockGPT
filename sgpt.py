@@ -17,12 +17,12 @@ args = parser.parse_args()
 sysPrompt = 'You are a financial advisor. When the user gives you a headline, ' \
             'respond with a number between -1.0 and 1.0, signifying whether the ' \
             'headline is extremely negative (-1.0), neutral (0.0), or extremely ' \
-            'positive (1.0) for the stock value of {}.'
+            'positive (1.0), in the short term, for the stock value of {}.'
 if args.combined:
     sysPrompt = 'You are a financial advisor. When the user gives you a list of headlines, ' \
                 'respond with a number between -1.0 and 1.0 for each headline, signifying whether the ' \
                 'headline is extremely negative (-1.0), neutral (0.0), or extremely ' \
-                'positive (1.0) for the stock value of {}.'
+                'positive (1.0), in the short term, for the stock value of {}.'
 modelV = 'gpt-3.5-turbo' if args.turbo else 'gpt-4'
 tScores = []
 apiCost = 0

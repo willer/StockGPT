@@ -1,6 +1,6 @@
 Google,GOOGL
 Microsoft,MSFT
-Facebook,FB
+Facebook,META
 NVidia,NVDA
 Tesla,TSLA
 Apple,AAPL
@@ -12,7 +12,6 @@ Intel,INTC
 Cisco,CSCO
 Qualcomm,QCOM
 AMD,AMD
-IBM,IBM
 Oracle,ORCL
 Salesforce,CRM
 Twitter,TWTR
@@ -23,3 +22,22 @@ Square,SQ
 Spotify,SPOT
 Ebay,EBAY
 Peloton,PTON
+Exxon Mobil,XOM
+Visa,V
+Walmart,WMT
+JP Morgan,JPM
+Johnson and Johnson,JNJ
+Procter and Gamble,PG
+Chevron,CVX
+Costco,COST
+Coca-Cola,KO
+Pepsico,PEP
+Home Depot,HD
+Walt Disney,DIS
+Verizon,VZ
+AT&T,T
+Boeing,BA
+Wells Fargo,WFC
+Citigroup,C
+Bank of America,BAC
+Morgan Stanley,MS
